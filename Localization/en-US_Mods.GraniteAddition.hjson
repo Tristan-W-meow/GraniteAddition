@@ -2,7 +2,7 @@
 
 Items: {
 	GraniteDagger: {
-		DisplayName: "Granite Dagger"
+		DisplayName: Granite Dagger
 		Tooltip:
 			'''
 			Template of an item
@@ -10,4 +10,11 @@ Items: {
 			It's snowing on Mt.Fuji
 			'''
 	}
+
+	GraniteSpear: {
+		Tooltip: ""
+		DisplayName: Granite Spear
+	}
 }
+
+Projectiles.GraniteSpearProjectile.DisplayName: Granite Spear Projectile

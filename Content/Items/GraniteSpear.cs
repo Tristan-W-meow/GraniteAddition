@@ -23,8 +23,6 @@ namespace GraniteAddition.Content.Items
 			Item.DefaultToSpear(ModContent.ProjectileType<Projectiles.GraniteSpearProjectile>(), 22, 22);
             Item.damage = 22;
 			Item.crit = 5;
-			//Item.width = 20;
-			//Item.height = 60;
 			Item.knockBack = 6;
 			Item.value = Item.sellPrice(3200);
 			Item.rare = ItemRarityID.Green;
