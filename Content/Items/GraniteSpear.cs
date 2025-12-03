@@ -21,9 +21,12 @@ namespace GraniteAddition.Content.Items
 		{
 
 			Item.DefaultToSpear(ModContent.ProjectileType<Projectiles.GraniteSpearProjectile>(), 22, 22);
-            Item.damage = 22;
+			Item.useAnimation = 92;
+			Item.useTime = 92;
+            Item.damage = 18;
 			Item.crit = 5;
-			Item.knockBack = 6;
+			Item.ArmorPenetration = 10;
+            Item.knockBack = 6;
 			Item.value = Item.sellPrice(3200);
 			Item.rare = ItemRarityID.Green;
 			//Item.UseSound = SoundID.Item1;

@@ -8,13 +8,14 @@ namespace GraniteAddition.Content.Projectiles
 {
 	public class GraniteSpearProjectile : ModProjectile
 	{
-		// Define the range of the Spear Projectile. These are overridable properties, in case you'll want to make a class inheriting from this one.
-		protected virtual float HoldoutRangeMin => 24f;
-		protected virtual float HoldoutRangeMax => 96f;
+		// Define the range of the Spear Projectile. These are overridable properties
+		protected virtual float HoldoutRangeMin => 35f;
+		protected virtual float HoldoutRangeMax => 110f;
 
 		public override void SetDefaults() {
 			Projectile.CloneDefaults(ProjectileID.Spear); // Clone the default values for a vanilla spear. Spear specific values set for width, height, aiStyle, friendly, penetrate, tileCollide, scale, hide, ownerHitCheck, and melee.
-		}
+			Projectile.scale = 1.3f; // Change the scale of the projectile to 1f (100% size)
+        }
 
 		public override bool PreAI() {
 			Player player = Main.player[Projectile.owner]; // Since we access the owner player instance so much, it's useful to create a helper local variable for this
@@ -40,7 +41,7 @@ namespace GraniteAddition.Content.Projectiles
 				progress = (duration - Projectile.timeLeft) / halfDuration;
 			}
 
-			// Move the projectile from the HoldoutRangeMin to the HoldoutRangeMax and back, using SmoothStep for easing the movement
+			// Move the projectile from the HoldoutRangeMin to the Holdo	utRangeMax and back, using SmoothStep for easing the movement
 			Projectile.Center = player.MountedCenter + Vector2.SmoothStep(Projectile.velocity * HoldoutRangeMin, Projectile.velocity * HoldoutRangeMax, progress);
 
 			// Apply proper rotation to the sprite.
