@@ -1,4 +1,5 @@
 using Terraria;
+using Terraria.Audio;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -20,20 +21,36 @@ namespace GraniteAddition.Content.Items
         public override void SetDefaults()
 		{
 
-			Item.DefaultToSpear(ModContent.ProjectileType<Projectiles.GraniteSpearProjectile>(), 22, 22);
+			Item.DefaultToSpear(ModContent.ProjectileType<Projectiles.GraniteSpearProjectile>(), 10, 22);
 			Item.useAnimation = 92;
 			Item.useTime = 92;
             Item.damage = 18;
 			Item.crit = 5;
 			Item.ArmorPenetration = 10;
-            Item.knockBack = 6;
+            Item.knockBack = 6f;
 			Item.value = Item.sellPrice(3200);
 			Item.rare = ItemRarityID.Green;
-			//Item.UseSound = SoundID.Item1;
+			Item.UseSound = SoundID.Item15;
             Item.autoReuse = true;
 		}
+        public override bool CanUseItem(Player player) //copied
+        {
+            // Ensures no more than one spear can be thrown out. 
+            return player.ownedProjectileCounts[Item.shoot] < 1;
+        }
 
-		public override void AddRecipes()
+        public override bool? UseItem(Player player) // copied
+        {
+            // Because we're skipping sound playback on use animation start, we have to play it ourselves whenever the item is actually used.
+            if (!Main.dedServ && Item.UseSound.HasValue)
+            {
+                SoundEngine.PlaySound(Item.UseSound.Value, player.Center);
+            }
+
+            return null;
+        }
+
+        public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
 			recipe.AddIngredient(ItemID.DirtBlock, 10);

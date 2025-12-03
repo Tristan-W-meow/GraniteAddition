@@ -41,11 +41,11 @@ namespace GraniteAddition.Content.Projectiles
 				progress = (duration - Projectile.timeLeft) / halfDuration;
 			}
 
-			// Move the projectile from the HoldoutRangeMin to the Holdo	utRangeMax and back, using SmoothStep for easing the movement
-			Projectile.Center = player.MountedCenter + Vector2.SmoothStep(Projectile.velocity * HoldoutRangeMin, Projectile.velocity * HoldoutRangeMax, progress);
+			// Move the projectile from the HoldoutRangeMin to the HoldoutRangeMax and back, using SmoothStep for easing the movement
+            Projectile.Center = player.MountedCenter + Vector2.SmoothStep(Projectile.velocity * HoldoutRangeMin, Projectile.velocity * HoldoutRangeMax, progress);
 
-			// Apply proper rotation to the sprite.
-			if (Projectile.spriteDirection == -1) {
+            // Apply proper rotation to the sprite.
+            if (Projectile.spriteDirection == -1) {
 				// If sprite is facing left, rotate 45 degrees
 				Projectile.rotation += MathHelper.ToRadians(45f);
 			}
@@ -53,6 +53,8 @@ namespace GraniteAddition.Content.Projectiles
 				// If sprite is facing right, rotate 135 degrees
 				Projectile.rotation += MathHelper.ToRadians(135f);
 			}
+
+			
 
             /*
 			 * Dust spawning code. Currently unused. Left for possible future use. Turned into comment to remove errors.
@@ -72,5 +74,11 @@ namespace GraniteAddition.Content.Projectiles
 
             return false; // Don't execute vanilla AI.
 		}
-	}
+        public override void OnHitNPC(NPC target, NPC.HitInfo hit, int damageDone)
+        {
+            target.AddBuff(BuffID.OnFire, 600);
+        }
+
+
+    }
 }
