@@ -12,7 +12,13 @@ Items: {
 	}
 
 	GraniteSpear: {
-		Tooltip: ""
+		Tooltip:
+			'''
+			10 Armor pierce
+			ROCK AND STONE
+
+			              
+			'''
 		DisplayName: Granite Spear
 	}
 }

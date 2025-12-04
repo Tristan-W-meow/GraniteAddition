@@ -14,6 +14,7 @@ namespace GraniteAddition.Content.Items
 		{
 			ItemID.Sets.Spears[Item.type] = true; // This allows the game to recognize our new item as a spear.
             ItemID.Sets.SkipsInitialUseSound[Item.type] = true;
+			
         }
 
         // The Display Name and Tooltip of this item can be edited in the 'Localization/en-US_Mods.GraniteAddition.hjson' file.
@@ -21,9 +22,7 @@ namespace GraniteAddition.Content.Items
         public override void SetDefaults()
 		{
 
-			Item.DefaultToSpear(ModContent.ProjectileType<Projectiles.GraniteSpearProjectile>(), 10, 22);
-			Item.useAnimation = 92;
-			Item.useTime = 92;
+			Item.DefaultToSpear(ModContent.ProjectileType<Projectiles.GraniteSpearProjectile>(), 10, 92);
             Item.damage = 18;
 			Item.crit = 5;
 			Item.ArmorPenetration = 10;
@@ -32,7 +31,7 @@ namespace GraniteAddition.Content.Items
 			Item.rare = ItemRarityID.Green;
 			Item.UseSound = SoundID.Item15;
             Item.autoReuse = true;
-		}
+        }
         public override bool CanUseItem(Player player) //copied
         {
             // Ensures no more than one spear can be thrown out. 
@@ -53,9 +52,17 @@ namespace GraniteAddition.Content.Items
         public override void AddRecipes()
 		{
 			Recipe recipe = CreateRecipe();
-			recipe.AddIngredient(ItemID.DirtBlock, 10);
-			recipe.AddTile(TileID.WorkBenches);
+			recipe.AddIngredient(ItemID.Granite, 250);
+            recipe.AddIngredient(ItemID.FallenStar, 5);
+            recipe.AddIngredient(ItemID.DemoniteBar, 10);
+            recipe.AddTile(TileID.Anvils);
 			recipe.Register();
-		}
+            recipe = CreateRecipe();
+            recipe.AddIngredient(ItemID.Granite, 250);
+            recipe.AddIngredient(ItemID.FallenStar, 5);
+            recipe.AddIngredient(ItemID.CrimtaneBar, 10);
+            recipe.AddTile(TileID.Anvils);
+            recipe.Register();
+        }
 	}
 }
